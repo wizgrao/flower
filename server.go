@@ -20,6 +20,9 @@ type Server struct {
 }
 
 func NewServer() *Server {
+    upgrader.CheckOrigin = func(r *http.Request) bool {
+      return true
+    }
 	s := &Server{
 		Pixels:     make([]*Pixel, 0),
 		Clients:    make(map[*Client]bool),

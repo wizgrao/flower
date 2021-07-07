@@ -2,12 +2,14 @@ package main
 
 import (
 	"github.com/wizgrao/flower"
+    "log"
 	"net/http"
 )
 
 func main() {
 	http.Handle("/ws", flower.NewServer())
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+        log.Println(request.URL)
 		http.ServeFile(writer, request, "index.html")
 	})
 	http.HandleFunc("/flower.js", func(writer http.ResponseWriter, request *http.Request) {
