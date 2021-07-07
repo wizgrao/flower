@@ -70,6 +70,7 @@ func (h *Server) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	conn, err := upgrader.Upgrade(writer, request, nil)
 	if err != nil {
 		log.Println("fuck", err)
+		return
 	}
 	c := &Client{
 		Server: h,
@@ -110,5 +111,4 @@ func (h *Server) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 		}
 	}()
 	h.ClientChan <- c
-
 }
